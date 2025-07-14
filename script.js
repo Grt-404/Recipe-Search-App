@@ -1,45 +1,43 @@
-document.querySelector("button").addEventListener("click", async () => {
-    const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
-    let input = document.querySelector("#search");
-    let append = input.value;
-    const final = `https://www.themealdb.com/api/json/v1/1/search.php?s=${append}`
+document.querySelector("#submitBtn").addEventListener("click", async () => {
+  const input = document.querySelector("#search").value.trim();
 
-    let promise = () => {
-        return fetch(final);
-    };
+  if (!input) return alert("Please enter a dish name!");
 
-    let getRecipe = async () => {
-        let response = await promise();
-        let data = await response.json();
-        return data;
-    };
-    let area = document.querySelector("#area");
-    let instructions = document.querySelector("#recipie");
-    let list = document.querySelector("#list");
+  const finalURL = `https://www.themealdb.com/api/json/v1/1/search.php?s=${input}`;
 
-    area.innerHTML = "";
+  try {
+    const response = await fetch(finalURL);
+    const data = await response.json();
+
+    if (!data.meals) {
+      document.querySelector("#area").innerHTML = "❌ No recipe found.";
+      document.querySelector("#list").innerHTML = "";
+      document.querySelector("#instructions").innerHTML = "";
+      return;
+    }
+
+    const meal = data.meals[0];
+
+    document.querySelector("#area").innerHTML = `${meal.strMeal}`;
+
+    // Ingredients
+    const list = document.querySelector("#list");
     list.innerHTML = "";
-    instructions.innerHTML = "";
+    for (let i = 1; i <= 20; i++) {
+      const ingredient = meal[`strIngredient${i}`];
+      const measure = meal[`strMeasure${i}`];
 
-    let data = await getRecipe();
-    let meal = data.meals[0];
+      if (ingredient && ingredient.trim()) {
+        const li = document.createElement("li");
+        li.textContent = `${ingredient} - ${measure}`;
+        list.appendChild(li);
+      }
+    }
 
-    let country = meal.strMeal;
-    area.innerHTML = `<p>${country}</p>`;
-
-    (async () => {
-        for (let i = 1; i <= 20; i++) {
-            let ingredient = meal[`strIngredient${i}`];
-            let measure = meal[`strMeasure${i}`];
-
-            if (ingredient && ingredient.trim() !== "") {
-                let el = document.createElement("li");
-                el.innerText = `${ingredient} - ${measure}`;
-                document.querySelector("#list").append(el);
-            }
-        }
-    })();
-
-    let recipe = meal.strInstructions;
-    instructions.innerHTML = `<p>${recipe}</p>`;
+    // Instructions
+    document.querySelector("#instructions").textContent = meal.strInstructions;
+  } catch (err) {
+    console.error("Error fetching recipe:", err);
+    alert("Something went wrong. Try again.");
+  }
 });
