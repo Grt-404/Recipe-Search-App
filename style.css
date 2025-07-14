@@ -1,163 +1,79 @@
-/* Reset & base styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* style.css */
 
+/* Use a smooth gradient background */
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to right, #f6d365, #fda085);
-    color: #333;
-    min-height: 100vh;
-    padding: 30px 15px;
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 30px;
 }
 
-/* Container styling */
+/* Center the form */
 #look {
-    max-width: 700px;
-    margin: auto;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    padding: 30px 25px;
-    transition: all 0.3s ease-in-out;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+  max-width: 700px;
+  margin: auto;
+  background: white;
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Submit section */
-#submit {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
+/* Input styling */
+#search {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
 }
 
-#submit label {
-    font-weight: 600;
-    font-size: 1rem;
-    color: #fff;
+/* Submit button */
+button {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
-#submit input {
-    padding: 12px 18px;
-    font-size: 1rem;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: rgba(255, 255, 255, 0.9);
-    transition: all 0.2s ease-in-out;
+button:hover {
+  background-color: #e65b50;
 }
 
-#submit input:focus {
-    outline: none;
-    border-color: #ff8c42;
-    box-shadow: 0 0 8px #ffb16d;
-}
-
-/* Button styling */
-#submit button {
-    padding: 12px;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #ff5f6d, #ffc371);
-    color: white;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-#submit button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(255, 110, 110, 0.4);
-}
-
-/* Result box */
+/* Result section */
 #result {
-    margin-top: 30px;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 25px;
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.6s ease-in-out;
-    color: #222;
+  margin-top: 30px;
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
+/* Recipe name */
 #area p {
-    font-size: 1.6rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #fff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* Ingredients */
-#ingredients h2 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #444;
-}
-
+/* Ingredients list */
 #list {
-    margin-left: 20px;
-    line-height: 1.6;
-    padding: 10px 0;
+  margin-top: 15px;
+  padding-left: 20px;
 }
 
 #list li {
-    font-size: 1rem;
-    margin-bottom: 5px;
-    color: #333;
-    background: #fff6e5;
-    padding: 8px 12px;
-    border-radius: 8px;
-    transition: transform 0.2s;
-}
-
-#list li:hover {
-    transform: scale(1.03);
-    background: #ffe6ba;
+  margin-bottom: 6px;
+  font-size: 1rem;
+  color: #444;
 }
 
 /* Instructions */
 #recipie p {
-    margin-top: 20px;
-    font-size: 1.05rem;
-    line-height: 1.7;
-    background: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive */
-@media screen and (max-width: 600px) {
-    #look {
-        padding: 20px;
-    }
-
-    #submit input,
-    #submit button {
-        font-size: 0.95rem;
-    }
-
-    #area p,
-    #recipie p {
-        font-size: 1.1rem;
-    }
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: #222;
+  line-height: 1.6;
+  white-space: pre-line;
 }
